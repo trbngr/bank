@@ -60,6 +60,7 @@ defmodule Bank.Protocol.DepositMoneyTest do
       #  This shouldn't be necessary. Not my app, not my problem :)
       Process.sleep(500)
 
+      assert amount == Accounts.view_balance(account: account_id)
       assert amount == Accounting.current_balance(account: account_id)
     end
 
@@ -72,6 +73,7 @@ defmodule Bank.Protocol.DepositMoneyTest do
       #  This shouldn't be necessary. Not my app, not my problem :)
       Process.sleep(500)
 
+      assert amount == Accounts.view_balance(account: account_id)
       assert amount == Accounting.current_balance(account: account_id)
     end
   end
