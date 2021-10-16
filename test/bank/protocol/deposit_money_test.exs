@@ -51,9 +51,9 @@ defmodule Bank.Protocol.DepositMoneyTest do
   end
 
   describe "command dispatch" do
-    alias Bank.Core.Accounting
+    alias Bank.Core.{Accounting, Accounts}
 
-    test "inserts account entry" do
+    test "from module" do
       account_id = "000-001"
       amount = 500
 
@@ -61,6 +61,18 @@ defmodule Bank.Protocol.DepositMoneyTest do
                %{account_id: account_id, amount: amount}
                |> DepositMoney.new()
                |> DepositMoney.dispatch()
+
+      #  This shouldn't be necessary. Not my app, not my problem :)
+      Process.sleep(500)
+
+      assert amount == Accounting.current_balance(account: account_id)
+    end
+
+    test "from context" do
+      account_id = "000-001"
+      amount = 500
+
+      assert :ok = Accounts.deposit_money(account_id: account_id, amount: amount)
 
       #  This shouldn't be necessary. Not my app, not my problem :)
       Process.sleep(500)
