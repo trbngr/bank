@@ -35,13 +35,8 @@ defmodule Bank.Protocol.DepositMoneyTest do
       assert %{balance: ^amount, id: ^account_id} = state
 
       assert [
-               %AccountOpened{
-                 account_id: ^account_id
-               },
-               %MoneyDeposited{
-                 account_id: ^account_id,
-                 amount: ^amount
-               },
+               %AccountOpened{account_id: ^account_id},
+               %MoneyDeposited{account_id: ^account_id, amount: ^amount},
                %JournalEntryCreated{
                  debit: [%{account_id: ^account_id, amount: ^amount}],
                  credit: [%{account_id: "000-000", amount: ^amount}]
