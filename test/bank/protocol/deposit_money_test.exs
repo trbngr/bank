@@ -58,7 +58,7 @@ defmodule Bank.Protocol.DepositMoneyTest do
                |> DepositMoney.dispatch()
 
       #  This shouldn't be necessary. Not my app, not my problem :)
-      Process.sleep(500)
+      Process.sleep(100)
 
       assert amount == Accounts.view_balance(account: account_id)
       assert amount == Accounting.current_balance(account: account_id)
@@ -71,7 +71,7 @@ defmodule Bank.Protocol.DepositMoneyTest do
       assert :ok = Accounts.deposit_money(account_id: account_id, amount: amount)
 
       #  This shouldn't be necessary. Not my app, not my problem :)
-      Process.sleep(500)
+      Process.sleep(100)
 
       assert amount == Accounts.view_balance(account: account_id)
       assert amount == Accounting.current_balance(account: account_id)
