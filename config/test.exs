@@ -18,5 +18,11 @@ config :bank, BankWeb.Endpoint,
   http: [port: 4002],
   server: false
 
+config :bank, Bank.Core.Application,
+  event_store: [adapter: Commanded.EventStore.Adapters.InMemory]
+
+config :commanded, Commanded.EventStore.Adapters.InMemory,
+  serializer: Commanded.Serialization.JsonSerializer
+
 # Print only warnings and errors during test
 config :logger, level: :warn

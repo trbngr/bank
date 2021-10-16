@@ -1,25 +1,31 @@
 defmodule Bank.Core.Router do
   use Commanded.Commands.Router
 
-  alias Bank.Core.Commands
+  alias Bank.Protocol.{
+    DepositMoney,
+    FailMoneyTransfer,
+    WithdrawMoney,
+    ReceiveMoneyFromAccount,
+    SendMoneyToAccount
+  }
 
   dispatch(
     [
-      Commands.DepositMoney,
-      Commands.WithdrawMoney
+      DepositMoney,
+      WithdrawMoney
     ],
     to: Bank.Core.Accounts.Account,
     identity: :account_id
   )
 
   dispatch(
-    [Commands.SendMoneyToAccount, Commands.FailMoneyTransfer],
+    [SendMoneyToAccount, FailMoneyTransfer],
     to: Bank.Core.Accounts.Account,
     identity: :from_account_id
   )
 
   dispatch(
-    [Commands.ReceiveMoneyFromAccount],
+    [ReceiveMoneyFromAccount],
     to: Bank.Core.Accounts.Account,
     identity: :to_account_id
   )

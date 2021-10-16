@@ -5,7 +5,7 @@ defmodule Bank.Core.Accounting.AccountEntryProjector do
     consistency: :strong
 
   alias Bank.Core.Accounting.AccountEntry
-  alias Bank.Core.Events.JournalEntryCreated
+  alias Bank.Protocol.JournalEntryCreated
 
   project(
     %JournalEntryCreated{} = evt,

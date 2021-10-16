@@ -1,22 +1,16 @@
 defmodule Bank.Core.Accounts.Account do
-  alias Bank.Core.Commands.{
-    DepositMoney,
-    WithdrawMoney,
-    SendMoneyToAccount,
+  alias Bank.Protocol.{DepositMoney, MoneyDeposited, AccountOpened}
+  alias Bank.Protocol.{FailMoneyTransfer, MoneyTransferFailed}
+  alias Bank.Protocol.{WithdrawMoney, MoneyWithdrawn}
+  alias Bank.Protocol.{SendMoneyToAccount, MoneySentToAccount}
+
+  alias Bank.Protocol.{
     ReceiveMoneyFromAccount,
-    FailMoneyTransfer
+    MoneyReceivedFromAccount,
+    MoneyReceivedFromAccountFailed
   }
 
-  alias Bank.Core.Events.{
-    MoneyDeposited,
-    MoneyWithdrawn,
-    JournalEntryCreated,
-    AccountOpened,
-    MoneyReceivedFromAccount,
-    MoneyReceivedFromAccountFailed,
-    MoneySentToAccount,
-    MoneyTransferFailed
-  }
+  alias Bank.Protocol.JournalEntryCreated
 
   alias Bank.Core.Accounts.Account
 

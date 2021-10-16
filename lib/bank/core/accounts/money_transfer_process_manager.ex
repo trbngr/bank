@@ -4,13 +4,12 @@ defmodule Bank.Core.Accounts.MoneyTransferProcessManager do
     start_from: :origin,
     application: Bank.Core.Application
 
-  alias Bank.Core.Commands.{ReceiveMoneyFromAccount, FailMoneyTransfer}
+  alias Bank.Protocol.{FailMoneyTransfer, MoneyTransferFailed, ReceiveMoneyFromAccount}
 
-  alias Bank.Core.Events.{
+  alias Bank.Protocol.{
     MoneySentToAccount,
     MoneyReceivedFromAccount,
-    MoneyReceivedFromAccountFailed,
-    MoneyTransferFailed
+    MoneyReceivedFromAccountFailed
   }
 
   defstruct [:transaction_id]
