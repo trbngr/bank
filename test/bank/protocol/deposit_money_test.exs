@@ -43,8 +43,8 @@ defmodule Bank.Protocol.DepositMoneyTest do
                  amount: ^amount
                },
                %JournalEntryCreated{
-                 debit: %{^account_id => ^amount},
-                 credit: %{"000-000" => ^amount}
+                 debit: [%{account_id: ^account_id, amount: ^amount}],
+                 credit: [%{account_id: "000-000", amount: ^amount}]
                }
              ] = events
     end

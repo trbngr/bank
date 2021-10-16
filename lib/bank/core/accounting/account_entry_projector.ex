@@ -25,7 +25,7 @@ defmodule Bank.Core.Accounting.AccountEntryProjector do
     journal_entry
     |> Map.take([:debit, :credit])
     |> Enum.flat_map(fn {type, account_entries} ->
-      Enum.map(account_entries, fn {account_id, amount} ->
+      Enum.map(account_entries, fn %{account_id: account_id, amount: amount} ->
         {account_id, type, amount}
       end)
     end)
